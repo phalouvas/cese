@@ -18,9 +18,26 @@ ALLOWED_WORKING_GROUPS = {"wg1", "wg2", "wg3", "wg4", "wg5", "wg6", "wg7"}
 
 class Proposal(Document):
     def validate(self) -> None:
+        self._hydrate_primary_submitter()
         self._validate_types()
         self._validate_header_fields()
         self._validate_abstracts()
+
+    def _hydrate_primary_submitter(self) -> None:
+        abstracts: list[Any] = self.get("abstracts") or []
+        if not abstracts:
+            return
+
+        first = abstracts[0]
+        first_name = (first.get("author_1_name") or "").strip()
+        first_surname = (first.get("author_1_surname") or "").strip()
+        first_email = (first.get("author_1_email") or "").strip()
+
+        if not self.primary_submitter_name:
+            self.primary_submitter_name = " ".join(filter(None, [first_name, first_surname]))
+
+        if not self.primary_submitter_email:
+            self.primary_submitter_email = first_email
 
     def _validate_types(self) -> None:
         if self.proposal_type not in ALLOWED_PROPOSAL_TYPES:
@@ -36,11 +53,11 @@ class Proposal(Document):
         if self.proposal_type == "working_group" and self.working_group not in ALLOWED_WORKING_GROUPS:
             frappe.throw(_("Invalid working group."))
 
-        if self.proposal_type != "working_group":
+        if self.proposal_type != "working_group" and self.submission_type == "group":
             if not self.panel_title:
-                frappe.throw(_("Panel/session title is required."))
+                frappe.throw(_("Panel/session title is required for group submissions."))
             if not self.panel_summary:
-                frappe.throw(_("Panel/session summary is required."))
+                frappe.throw(_("Panel/session summary is required for group submissions."))
 
         if not self.primary_submitter_email:
             frappe.throw(_("Primary submitter email is required."))
@@ -59,8 +76,8 @@ class Proposal(Document):
         if self.submission_type == "individual" and len(abstracts) != 1:
             frappe.throw(_("Individual submissions require exactly one abstract."))
 
-        if self.submission_type == "group" and len(abstracts) > 4:
-            frappe.throw(_("Group submissions allow up to four abstracts."))
+        if self.submission_type == "group" and len(abstracts) != 4:
+            frappe.throw(_("Group submissions require exactly four abstracts."))
 
         for idx, row in enumerate(abstracts, start=1):
             _validate_abstract_row(row, idx)

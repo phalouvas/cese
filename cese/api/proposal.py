@@ -15,6 +15,7 @@ MAX_SUBMIT_SECONDS = 24 * 60 * 60
 def submit_proposal(payload: str | dict[str, Any] | None = None) -> dict[str, Any]:
     data = _coerce_payload(payload)
     _validate_spam_guards(data)
+    _hydrate_primary_submitter(data)
 
     proposal_doc = frappe.get_doc(
         {
@@ -48,6 +49,21 @@ def submit_proposal(payload: str | dict[str, Any] | None = None) -> dict[str, An
         "status": proposal_doc.status,
         "submitted_on": proposal_doc.submitted_on,
     }
+
+
+def _hydrate_primary_submitter(data: dict[str, Any]) -> None:
+    abstracts = data.get("abstracts") or []
+    first = abstracts[0] if abstracts else {}
+
+    first_name = (first.get("author_1_name") or "").strip()
+    first_surname = (first.get("author_1_surname") or "").strip()
+    first_email = (first.get("author_1_email") or "").strip()
+
+    if not data.get("primary_submitter_name"):
+        data["primary_submitter_name"] = " ".join(filter(None, [first_name, first_surname]))
+
+    if not data.get("primary_submitter_email"):
+        data["primary_submitter_email"] = first_email
 
 
 def _coerce_payload(payload: str | dict[str, Any] | None) -> dict[str, Any]:

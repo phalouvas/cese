@@ -58,14 +58,12 @@
   {
    "fieldname": "primary_submitter_email",
    "fieldtype": "Data",
-   "label": "Primary Submitter Email",
-   "reqd": 1
+    "label": "Primary Submitter Email"
   },
   {
    "fieldname": "primary_submitter_name",
    "fieldtype": "Data",
-   "label": "Primary Submitter Name",
-   "reqd": 1
+    "label": "Primary Submitter Name"
   },
   {
    "fieldname": "abstracts",
