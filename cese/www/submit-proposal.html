@@ -1,0 +1,88 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="cese-proposal-page" id="cese-proposal-app">
+  <h1>CESE Proposal Submission</h1>
+  <p class="lead">Complete all required details and submit your proposal.</p>
+
+  <div class="step-indicator" data-step-indicator>
+    <span class="step active">1. Type</span>
+    <span class="step">2. Details</span>
+    <span class="step">3. Review</span>
+  </div>
+
+  <form id="cese-proposal-form" novalidate>
+    <input type="text" name="honeypot" autocomplete="off" tabindex="-1" class="honeypot" aria-hidden="true">
+
+    <section data-step="1" class="wizard-step">
+      <h2>Select Proposal Type</h2>
+      <label><input type="radio" name="proposal_type" value="working_group" required> Working Group</label>
+      <label><input type="radio" name="proposal_type" value="thematically_focused_panel" required> Thematically-Focused Panel</label>
+      <label><input type="radio" name="proposal_type" value="cross_thematic_session" required> Cross-Thematic Session</label>
+
+      <h3>Submission Mode</h3>
+      <label><input type="radio" name="submission_type" value="individual" required> Individual</label>
+      <label><input type="radio" name="submission_type" value="group" required> Group</label>
+    </section>
+
+    <section data-step="2" class="wizard-step hidden">
+      <h2>Proposal Details</h2>
+
+      <div data-working-group-block class="hidden">
+        <label for="working_group">Working Group</label>
+        <select id="working_group" name="working_group">
+          <option value="">Select one</option>
+          <option value="wg1">WG1</option>
+          <option value="wg2">WG2</option>
+          <option value="wg3">WG3</option>
+          <option value="wg4">WG4</option>
+          <option value="wg5">WG5</option>
+          <option value="wg6">WG6</option>
+          <option value="wg7">WG7</option>
+        </select>
+      </div>
+
+      <div data-panel-block class="hidden">
+        <label for="panel_title">Panel/Session Title</label>
+        <input id="panel_title" name="panel_title" type="text">
+
+        <label for="panel_summary">Panel/Session Summary</label>
+        <textarea id="panel_summary" name="panel_summary" rows="4"></textarea>
+      </div>
+
+      <label for="primary_submitter_name">Primary Submitter Name</label>
+      <input id="primary_submitter_name" name="primary_submitter_name" type="text" required>
+
+      <label for="primary_submitter_email">Primary Submitter Email</label>
+      <input id="primary_submitter_email" name="primary_submitter_email" type="email" required>
+
+      <div class="abstracts-head">
+        <h3>Abstracts</h3>
+        <button type="button" data-add-abstract>Add Abstract</button>
+      </div>
+      <p class="hint">Individual submissions require exactly 1 abstract. Group submissions allow up to 4.</p>
+      <div data-abstracts></div>
+    </section>
+
+    <section data-step="3" class="wizard-step hidden">
+      <h2>Review</h2>
+      <div data-review></div>
+    </section>
+
+    <div class="wizard-actions">
+      <button type="button" data-prev class="hidden">Back</button>
+      <button type="button" data-next>Next</button>
+      <button type="submit" data-submit class="hidden">Submit Proposal</button>
+    </div>
+  </form>
+
+  <section data-success class="hidden success-card">
+    <h2>Submission Received</h2>
+    <p>Your proposal has been submitted successfully.</p>
+    <p><strong>Reference:</strong> <span data-reference></span></p>
+  </section>
+</div>
+
+<link rel="stylesheet" href="/assets/cese/css/submit_proposal.css">
+<script src="/assets/cese/js/submit_proposal.js"></script>
+{% endblock %}

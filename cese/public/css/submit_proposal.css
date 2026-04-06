@@ -1,0 +1,93 @@
+.cese-proposal-page {
+  max-width: 980px;
+  margin: 2rem auto 3rem;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, #f6f8ff 0%, #ffffff 100%);
+  border-radius: 16px;
+  border: 1px solid #dce5ff;
+}
+
+.cese-proposal-page h1,
+.cese-proposal-page h2,
+.cese-proposal-page h3 {
+  color: #1f3569;
+}
+
+.step-indicator {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+  flex-wrap: wrap;
+}
+
+.step-indicator .step {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #b8c8ff;
+  background: #eef3ff;
+  color: #3052a1;
+  font-weight: 600;
+}
+
+.step-indicator .step.active {
+  background: #1f4fb6;
+  border-color: #1f4fb6;
+  color: #fff;
+}
+
+.wizard-step {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.abstract-card {
+  border: 1px solid #ccd8ff;
+  border-radius: 12px;
+  background: #f9fbff;
+  padding: 1rem;
+  margin-top: 0.8rem;
+}
+
+.abstract-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.authors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.wizard-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.hidden,
+.honeypot {
+  display: none !important;
+}
+
+.success-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #bed0ff;
+  background: #eef4ff;
+}
+
+@media (max-width: 768px) {
+  .authors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cese-proposal-page {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-04-06 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "abstract_title",
+  "abstract_details",
+  "author_1_name",
+  "author_1_surname",
+  "author_1_email",
+  "author_1_affiliation",
+  "author_2_name",
+  "author_2_surname",
+  "author_2_email",
+  "author_2_affiliation",
+  "author_3_name",
+  "author_3_surname",
+  "author_3_email",
+  "author_3_affiliation",
+  "author_4_name",
+  "author_4_surname",
+  "author_4_email",
+  "author_4_affiliation"
+ ],
+ "fields": [
+  {
+   "fieldname": "abstract_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Abstract Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "abstract_details",
+   "fieldtype": "Text Editor",
+   "label": "Abstract Details",
+   "reqd": 1
+  },
+  {
+   "fieldname": "author_1_name",
+   "fieldtype": "Data",
+   "label": "Author 1 Name"
+  },
+  {
+   "fieldname": "author_1_surname",
+   "fieldtype": "Data",
+   "label": "Author 1 Surname"
+  },
+  {
+   "fieldname": "author_1_email",
+   "fieldtype": "Data",
+   "label": "Author 1 Email"
+  },
+  {
+   "fieldname": "author_1_affiliation",
+   "fieldtype": "Data",
+   "label": "Author 1 Affiliation"
+  },
+  {
+   "fieldname": "author_2_name",
+   "fieldtype": "Data",
+   "label": "Author 2 Name"
+  },
+  {
+   "fieldname": "author_2_surname",
+   "fieldtype": "Data",
+   "label": "Author 2 Surname"
+  },
+  {
+   "fieldname": "author_2_email",
+   "fieldtype": "Data",
+   "label": "Author 2 Email"
+  },
+  {
+   "fieldname": "author_2_affiliation",
+   "fieldtype": "Data",
+   "label": "Author 2 Affiliation"
+  },
+  {
+   "fieldname": "author_3_name",
+   "fieldtype": "Data",
+   "label": "Author 3 Name"
+  },
+  {
+   "fieldname": "author_3_surname",
+   "fieldtype": "Data",
+   "label": "Author 3 Surname"
+  },
+  {
+   "fieldname": "author_3_email",
+   "fieldtype": "Data",
+   "label": "Author 3 Email"
+  },
+  {
+   "fieldname": "author_3_affiliation",
+   "fieldtype": "Data",
+   "label": "Author 3 Affiliation"
+  },
+  {
+   "fieldname": "author_4_name",
+   "fieldtype": "Data",
+   "label": "Author 4 Name"
+  },
+  {
+   "fieldname": "author_4_surname",
+   "fieldtype": "Data",
+   "label": "Author 4 Surname"
+  },
+  {
+   "fieldname": "author_4_email",
+   "fieldtype": "Data",
+   "label": "Author 4 Email"
+  },
+  {
+   "fieldname": "author_4_affiliation",
+   "fieldtype": "Data",
+   "label": "Author 4 Affiliation"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Cese",
+ "name": "Proposal Abstract",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

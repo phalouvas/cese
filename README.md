@@ -28,6 +28,24 @@ Pre-commit is configured to use the following tools for checking and formatting 
 - prettier
 - pyupgrade
 
+### Submit Proposal Feature
+
+This app now includes a public multi-step proposal submission flow inspired by the CESE Joomla implementation.
+
+- Public route: `/submit-proposal`
+- Backend endpoint: `cese.api.proposal.submit_proposal`
+- Storage: `Proposal` DocType with `Proposal Abstract` child table
+
+To configure admin notifications, set `proposal_admin_emails` in your site config:
+
+```json
+{
+	"proposal_admin_emails": ["conference-admin@example.org", "submissions@example.org"]
+}
+```
+
+If `proposal_admin_emails` is not set, notifications fall back to users with the `System Manager` role.
+
 ### License
 
 mit
