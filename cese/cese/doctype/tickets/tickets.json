@@ -8,6 +8,7 @@
  "field_order": [
   "code",
   "title",
+  "currency",
   "amount"
  ],
  "fields": [
@@ -32,13 +33,22 @@
    "in_list_view": 1,
    "label": "Amount",
    "non_negative": 1,
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "default": "EUR",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
    "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 09:42:42.401194",
+ "modified": "2026-04-08 10:06:44.774402",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Tickets",

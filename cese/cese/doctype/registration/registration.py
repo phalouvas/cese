@@ -10,11 +10,15 @@ class Registration(Document):
 	def validate(self):
 		if not self.ticket:
 			self.amount = None
+			self.currency = None
 			return
 
-		ticket_amount = frappe.db.get_value("Tickets", self.ticket, "amount")
+		ticket_data = frappe.db.get_value(
+			"Tickets", self.ticket, ["amount", "currency"], as_dict=True
+		)
 
-		if ticket_amount is None:
+		if not ticket_data:
 			frappe.throw(_("Ticket {0} does not exist.").format(frappe.bold(self.ticket)))
 
-		self.amount = ticket_amount
+		self.amount = ticket_data.amount
+		self.currency = ticket_data.currency
