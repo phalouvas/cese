@@ -9,27 +9,23 @@
   "abstract_details",
   "author_1_section",
   "author_1_name",
-  "author_1_email",
-  "column_break_ozfs",
   "author_1_surname",
+  "author_1_email",
   "author_1_affiliation",
   "author_2_section",
   "author_2_name",
-  "author_2_email",
-  "column_break_smgz",
   "author_2_surname",
+  "author_2_email",
   "author_2_affiliation",
   "author_3_section",
   "author_3_name",
-  "author_3_email",
-  "column_break_qbuz",
   "author_3_surname",
+  "author_3_email",
   "author_3_affiliation",
   "author_4_section",
   "author_4_name",
-  "author_4_email",
-  "column_break_yegu",
   "author_4_surname",
+  "author_4_email",
   "author_4_affiliation"
  ],
  "fields": [
@@ -152,17 +148,9 @@
    "label": "Author 1"
   },
   {
-   "fieldname": "column_break_ozfs",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "author_2_section",
    "fieldtype": "Section Break",
    "label": "Author 2"
-  },
-  {
-   "fieldname": "column_break_smgz",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "author_3_section",
@@ -170,23 +158,15 @@
    "label": "Author 3"
   },
   {
-   "fieldname": "column_break_qbuz",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "author_4_section",
    "fieldtype": "Section Break",
    "label": "Author 4"
-  },
-  {
-   "fieldname": "column_break_yegu",
-   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-04-08 08:00:01.972790",
+ "modified": "2026-04-08 08:53:09.394112",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Proposal Abstract",
