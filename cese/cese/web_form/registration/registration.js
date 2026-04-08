@@ -1,6 +1,6 @@
 frappe.ready(function() {
-	const setPricing = (amount) => {
-		return frappe.web_form.set_value("amount", amount)
+	const setPricing = (grandTotal) => {
+		return frappe.web_form.set_value("grand_total", grandTotal)
 	}
 
 	const setTicketAmount = () => {
@@ -16,7 +16,7 @@ frappe.ready(function() {
 				ticket
 			},
 			callback: (r) => {
-				setPricing(r.message ? r.message.amount : null)
+				setPricing(r.message ? r.message.grand_total : null)
 			}
 		})
 	}

@@ -89,7 +89,6 @@
    "fieldname": "grand_total",
    "fieldtype": "Currency",
    "label": "Amount",
-   "options": "EUR",
    "read_only": 1,
    "reqd": 1
   }
@@ -97,7 +96,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 10:42:23.623595",
+ "modified": "2026-04-08 10:44:56.758522",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Registration",

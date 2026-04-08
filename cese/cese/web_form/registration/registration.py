@@ -9,13 +9,13 @@ def get_context(context):
 @frappe.whitelist(allow_guest=True)
 def get_ticket_pricing(ticket):
 	if not ticket:
-		return {"amount": None}
+		return {"grand_total": None}
 
-	ticket_data = frappe.db.get_value("Tickets", ticket, ["amount"], as_dict=True)
+	ticket_data = frappe.db.get_value("Tickets", ticket, ["grand_total"], as_dict=True)
 
 	if not ticket_data:
 		frappe.throw(_("Ticket {0} does not exist.").format(frappe.bold(ticket)))
 
 	return {
-		"amount": ticket_data.amount,
+		"grand_total": ticket_data.grand_total,
 	}
