@@ -1,0 +1,21 @@
+{
+ "app": "cese",
+ "bg_color": "gray",
+ "creation": "2026-04-08 08:22:11.251912",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_type": "App",
+ "idx": 0,
+ "label": "CESE",
+ "link_to": "CESE",
+ "link_type": "Workspace Sidebar",
+ "logo_url": "/assets/cese/images/logo_130x130.png",
+ "modified": "2026-04-08 08:28:33.645381",
+ "modified_by": "Administrator",
+ "name": "CESE",
+ "owner": "Administrator",
+ "restrict_removal": 0,
+ "roles": [],
+ "standard": 1
+}
