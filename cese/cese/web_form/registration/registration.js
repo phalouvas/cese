@@ -1,27 +1,22 @@
 frappe.ready(function() {
-	if (frappe.web_form.fields_dict?.amount?.df) {
-		frappe.web_form.fields_dict.amount.df.options = "currency"
+	const setPricing = (amount) => {
+		return frappe.web_form.set_value("amount", amount)
 	}
 
 	const setTicketAmount = () => {
 		const ticket = frappe.web_form.get_value("ticket")
 
 		if (!ticket) {
-			frappe.web_form.set_value("currency", "EUR")
-			frappe.web_form.set_value("amount", null)
-			return
+			return setPricing(null)
 		}
 
-		frappe.call({
-			method: "frappe.client.get_value",
+		return frappe.call({
+			method: "cese.cese.web_form.registration.registration.get_ticket_pricing",
 			args: {
-				doctype: "Tickets",
-				filters: { name: ticket },
-				fieldname: ["amount", "currency"]
+				ticket
 			},
 			callback: (r) => {
-				frappe.web_form.set_value("currency", r.message ? r.message.currency : "EUR")
-				frappe.web_form.set_value("amount", r.message ? r.message.amount : null)
+				setPricing(r.message ? r.message.amount : null)
 			}
 		})
 	}
