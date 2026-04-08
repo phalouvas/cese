@@ -199,7 +199,7 @@ app_license = "mit"
 
 # Request Events
 # ----------------
-# before_request = ["cese.utils.before_request"]
+before_request = ["cese.utils.before_request"]
 # after_request = ["cese.utils.after_request"]
 
 # Job Events
