@@ -1,28 +1,35 @@
 {
  "actions": [],
- "allow_rename": 0,
- "creation": "2026-04-06 00:00:00.000000",
+ "creation": "2026-04-06 00:00:00",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "abstract_title",
   "abstract_details",
+  "author_1_section",
   "author_1_name",
-  "author_1_surname",
   "author_1_email",
+  "column_break_ozfs",
+  "author_1_surname",
   "author_1_affiliation",
+  "author_2_section",
   "author_2_name",
-  "author_2_surname",
   "author_2_email",
+  "column_break_smgz",
+  "author_2_surname",
   "author_2_affiliation",
+  "author_3_section",
   "author_3_name",
-  "author_3_surname",
   "author_3_email",
+  "column_break_qbuz",
+  "author_3_surname",
   "author_3_affiliation",
+  "author_4_section",
   "author_4_name",
-  "author_4_surname",
   "author_4_email",
+  "column_break_yegu",
+  "author_4_surname",
   "author_4_affiliation"
  ],
  "fields": [
@@ -42,93 +49,133 @@
   {
    "fieldname": "author_1_name",
    "fieldtype": "Data",
-   "label": "Author 1 Name"
+   "label": "Name",
+   "reqd": 1
   },
   {
    "fieldname": "author_1_surname",
    "fieldtype": "Data",
-   "label": "Author 1 Surname"
+   "label": "Surname",
+   "reqd": 1
   },
   {
    "fieldname": "author_1_email",
    "fieldtype": "Data",
-   "label": "Author 1 Email"
+   "label": "Email",
+   "reqd": 1
   },
   {
    "fieldname": "author_1_affiliation",
    "fieldtype": "Data",
-   "label": "Author 1 Affiliation"
+   "label": "Affiliation"
   },
   {
    "fieldname": "author_2_name",
    "fieldtype": "Data",
-   "label": "Author 2 Name"
+   "label": "Name"
   },
   {
    "fieldname": "author_2_surname",
    "fieldtype": "Data",
-   "label": "Author 2 Surname"
+   "label": "Surname"
   },
   {
    "fieldname": "author_2_email",
    "fieldtype": "Data",
-   "label": "Author 2 Email"
+   "label": "Email"
   },
   {
    "fieldname": "author_2_affiliation",
    "fieldtype": "Data",
-   "label": "Author 2 Affiliation"
+   "label": "Affiliation"
   },
   {
    "fieldname": "author_3_name",
    "fieldtype": "Data",
-   "label": "Author 3 Name"
+   "label": "Name"
   },
   {
    "fieldname": "author_3_surname",
    "fieldtype": "Data",
-   "label": "Author 3 Surname"
+   "label": "Surname"
   },
   {
    "fieldname": "author_3_email",
    "fieldtype": "Data",
-   "label": "Author 3 Email"
+   "label": "Email"
   },
   {
    "fieldname": "author_3_affiliation",
    "fieldtype": "Data",
-   "label": "Author 3 Affiliation"
+   "label": "Affiliation"
   },
   {
    "fieldname": "author_4_name",
    "fieldtype": "Data",
-   "label": "Author 4 Name"
+   "label": "Name"
   },
   {
    "fieldname": "author_4_surname",
    "fieldtype": "Data",
-   "label": "Author 4 Surname"
+   "label": "Surname"
   },
   {
    "fieldname": "author_4_email",
    "fieldtype": "Data",
-   "label": "Author 4 Email"
+   "label": "Email"
   },
   {
    "fieldname": "author_4_affiliation",
    "fieldtype": "Data",
-   "label": "Author 4 Affiliation"
+   "label": "Affiliation"
+  },
+  {
+   "fieldname": "author_1_section",
+   "fieldtype": "Section Break",
+   "label": "Author 1"
+  },
+  {
+   "fieldname": "column_break_ozfs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "author_2_section",
+   "fieldtype": "Section Break",
+   "label": "Author 2"
+  },
+  {
+   "fieldname": "column_break_smgz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "author_3_section",
+   "fieldtype": "Section Break",
+   "label": "Author 3"
+  },
+  {
+   "fieldname": "column_break_qbuz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "author_4_section",
+   "fieldtype": "Section Break",
+   "label": "Author 4"
+  },
+  {
+   "fieldname": "column_break_yegu",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-04-06 00:00:00.000000",
+ "modified": "2026-04-08 07:51:53.125253",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Proposal Abstract",
  "owner": "Administrator",
  "permissions": [],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

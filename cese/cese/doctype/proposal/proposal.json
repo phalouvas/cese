@@ -1,8 +1,7 @@
 {
  "actions": [],
- "allow_rename": 0,
  "autoname": "format:PROP-{####}",
- "creation": "2026-04-06 00:00:00.000000",
+ "creation": "2026-04-06 00:00:00",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -11,8 +10,6 @@
   "working_group",
   "panel_title",
   "panel_summary",
-  "primary_submitter_email",
-  "primary_submitter_name",
   "abstracts",
   "status",
   "submitted_on",
@@ -25,45 +22,39 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Proposal Type",
-   "options": "\nworking_group\nthematically_focused_panel\ncross_thematic_session",
+   "options": "Working group\nThematically-focused panel\nCross-thematic session",
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.proposal_type!='Working group'",
    "fieldname": "submission_type",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Submission Type",
-   "options": "\nindividual\ngroup",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.proposal_type!='Working group'",
+   "options": "Individual Submission\nGroup Submission"
   },
   {
-   "depends_on": "eval:doc.proposal_type=='working_group'",
+   "depends_on": "eval:doc.proposal_type=='Working group'",
    "fieldname": "working_group",
    "fieldtype": "Select",
    "label": "Working Group",
-   "options": "\nwg1\nwg2\nwg3\nwg4\nwg5\nwg6\nwg7"
+   "mandatory_depends_on": "eval:doc.proposal_type=='Working group'",
+   "options": "\nWorking Group 1: Ideas and ideals of learning: historical and philosophical perspectives on notions of education, study and learning across time and place\nWorking Group 2: Governing learning: managing, leading, and organizing learning systems and processes in education, including the influence of the digital\nWorking Group 3: Learning and the University: Politics, Policies, Practices, and Experiences of Learning, Experimentation, and Control in Higher Education\nWorking Group 4: Learning and the curriculum: both explicit and hidden, now and in the future\nWorking Group 5: Alternative epistemologies of learning: the worlds of embodied, indigenous and minoritized knowledges\nWorking Group 6: Learning for political engagement: citizenship education, education for democracy, activism, capabilities, and empowerment\nNew Scholars WG: developing research capacities for academic practice"
   },
   {
-   "depends_on": "eval:doc.proposal_type!='working_group'",
+   "depends_on": "eval:doc.proposal_type!='Working group' && doc.submission_type==\"Group Submission\"",
    "fieldname": "panel_title",
    "fieldtype": "Data",
-   "label": "Panel/Session Title"
+   "label": "Panel/Session Title",
+   "mandatory_depends_on": "eval:doc.proposal_type!='Working group' && doc.submission_type==\"Group Submission\""
   },
   {
-   "depends_on": "eval:doc.proposal_type!='working_group'",
+   "depends_on": "eval:doc.proposal_type!='Working group' && doc.submission_type==\"Group Submission\"",
    "fieldname": "panel_summary",
    "fieldtype": "Small Text",
-   "label": "Panel/Session Summary"
-  },
-  {
-   "fieldname": "primary_submitter_email",
-   "fieldtype": "Data",
-    "label": "Primary Submitter Email"
-  },
-  {
-   "fieldname": "primary_submitter_name",
-   "fieldtype": "Data",
-    "label": "Primary Submitter Name"
+   "label": "Panel/Session Summary",
+   "mandatory_depends_on": "eval:doc.proposal_type!='Working group' && doc.submission_type==\"Group Submission\""
   },
   {
    "fieldname": "abstracts",
@@ -89,6 +80,7 @@
    "read_only": 1
   },
   {
+   "default": "0",
    "fieldname": "is_guest_submission",
    "fieldtype": "Check",
    "label": "Guest Submission",
@@ -103,10 +95,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-06 00:00:00.000000",
+ "modified": "2026-04-08 07:41:17.260191",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Proposal",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -122,6 +115,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
