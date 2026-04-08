@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class CESERegistration(Document):
+class Registration(Document):
 	pass

@@ -12,7 +12,7 @@
    "indent": 0,
    "keep_closed": 0,
    "label": "Registrations",
-   "link_to": "CESE Registration",
+   "link_to": "Registration",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
@@ -40,9 +40,21 @@
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "tickets",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Tickets",
+   "link_to": "Tickets",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-04-08 09:25:25.490336",
+ "modified": "2026-04-08 09:38:03.426419",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "CESE",
