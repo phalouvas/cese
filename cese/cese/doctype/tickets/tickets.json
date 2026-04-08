@@ -8,7 +8,7 @@
  "field_order": [
   "code",
   "title",
-  "amount"
+  "grand_total"
  ],
  "fields": [
   {
@@ -27,7 +27,7 @@
    "reqd": 1
   },
   {
-   "fieldname": "amount",
+   "fieldname": "grand_total",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Amount",
@@ -39,7 +39,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 10:27:55.925407",
+ "modified": "2026-04-08 10:38:23.344535",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Tickets",

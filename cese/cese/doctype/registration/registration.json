@@ -6,8 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "ticket",
-  "currency",
-  "amount",
+  "grand_total",
   "first_name",
   "last_name",
   "organization",
@@ -72,15 +71,6 @@
    "reqd": 1
   },
   {
-   "fetch_from": "ticket.amount",
-   "fieldname": "amount",
-   "fieldtype": "Currency",
-   "label": "Amount",
-   "options": "EUR",
-   "read_only": 1,
-   "reqd": 1
-  },
-  {
    "default": "Pending",
    "fieldname": "status",
    "fieldtype": "Select",
@@ -95,20 +85,19 @@
    "reqd": 1
   },
   {
-   "default": "EUR",
-   "fetch_from": "ticket.currency",
-   "fieldname": "currency",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Currency",
-   "options": "Currency",
-   "read_only": 1
+   "fetch_from": "ticket.grand_total",
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "EUR",
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 10:26:05.852484",
+ "modified": "2026-04-08 10:42:23.623595",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Registration",
