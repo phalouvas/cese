@@ -1,15 +1,74 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-{% set registration = frappe.form_dict.get("registration") %}
+{% set registration = (frappe.form_dict.get("registration") or "") %}
+{% set registration_doc = frappe.get_doc("Registration", registration) if registration and frappe.db.exists("Registration", registration) else None %}
+{% set ticket_title = frappe.db.get_value("Tickets", registration_doc.ticket, "title") if registration_doc and registration_doc.ticket else None %}
+{% set full_name = ((registration_doc.first_name or "") ~ " " ~ (registration_doc.last_name or "")).strip() if registration_doc else "" %}
+{% set reference_code = registration_doc.payment_transaction_id or registration_doc.name if registration_doc else "" %}
+{% set event_title = "CESE Conference" %}
+{% set event_date = "To be announced" %}
+{% set event_end_date = "To be announced" %}
 <div class="container" style="max-width: 760px; padding: 2rem 0;">
 	<h1>Offline Payment Instructions</h1>
-	{% if registration %}
-	<p>Your registration ID is <strong>{{ registration }}</strong>.</p>
+	{% if registration_doc %}
+	<p>Dear <strong>{{ full_name }}</strong>,</p>
+	<p>You have just registered for event <strong>{{ event_title }}</strong>.</p>
 	<p>
-		Use this registration ID as payment reference when sending your bank transfer.
-		You can update this page content later with your exact bank details and instructions.
+		<strong>Please complete your payment within 3 days</strong>
+		to confirm your attendance at <strong>{{ event_title }}</strong>.
 	</p>
+
+	<div style="background-color: #fff4e5; border-left: 6px solid #e67e22; padding: 10px; margin: 15px 0;">
+		<strong>Amount Due:</strong>
+		<span style="font-size: 1.2em; color: #e74c3c;">{{ frappe.format_value(registration_doc.grand_total, {"fieldtype": "Currency"}) }}</span>
+	</div>
+
+	<h3>Registrant Details</h3>
+	<ul>
+		<li><strong>Name:</strong> {{ full_name }}</li>
+		<li><strong>Organization:</strong> {{ registration_doc.organization }}</li>
+		<li><strong>Location:</strong> {{ registration_doc.city }}, {{ registration_doc.country }}</li>
+		<li><strong>Email:</strong> {{ registration_doc.email }}</li>
+		<li><strong>Phone:</strong> {{ registration_doc.phone }}</li>
+	</ul>
+
+	<h3>Event Information</h3>
+	<ul>
+		<li><strong>Event:</strong> {{ event_title }}</li>
+		<li><strong>Dates:</strong> {{ event_date }} - {{ event_end_date }}</li>
+		<li><strong>Ticket Type:</strong> {{ ticket_title or registration_doc.ticket }}</li>
+		<li><strong>Amount Due:</strong> {{ frappe.format_value(registration_doc.grand_total, {"fieldtype": "Currency"}) }}</li>
+		<li><strong>Payment Method:</strong> Offline Bank Transfer</li>
+		<li><strong>Transaction Code:</strong> <span style="color: #e74c3c;"><strong>{{ reference_code }}</strong></span></li>
+	</ul>
+
+	<h3>Bank Transfer Instructions</h3>
+	<ul>
+		<li><strong>Bank:</strong> Eurobank</li>
+		<li><strong>Account Holder:</strong> KAINOTOMO PH LTD</li>
+		<li><strong>IBAN:</strong> CY11 0050 0301 0003 0110 7136 5301</li>
+		<li><strong>BIC/SWIFT:</strong> HEBACY2N</li>
+		<li><strong>Payment Reference:</strong> <span style="color: #e74c3c;"><strong>{{ reference_code }}</strong></span></li>
+	</ul>
+
+	<p>
+		<em>
+			Warning: Be sure to include the reference code <strong>{{ reference_code }}</strong>
+			in your transaction remarks to ensure proper identification.
+		</em>
+	</p>
+
+	<h3>Next Steps</h3>
+	<ol>
+		<li>Complete your bank transfer within <strong>3 days</strong>.</li>
+		<li>Watch for a confirmation email once payment is received.</li>
+	</ol>
+
+	<p>Regards,</p>
+	<p>Events Management Team</p>
+	{% elif registration %}
+	<p>Registration ID <strong>{{ registration }}</strong> was not found.</p>
 	{% else %}
 	<p>No registration ID was provided.</p>
 	{% endif %}

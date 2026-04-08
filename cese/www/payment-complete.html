@@ -1,12 +1,58 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-{% set registration = frappe.form_dict.get("registration") %}
+{% set registration = (frappe.form_dict.get("registration") or "") %}
+{% set registration_doc = frappe.get_doc("Registration", registration) if registration and frappe.db.exists("Registration", registration) else None %}
+{% set ticket_title = frappe.db.get_value("Tickets", registration_doc.ticket, "title") if registration_doc and registration_doc.ticket else None %}
+{% set full_name = ((registration_doc.first_name or "") ~ " " ~ (registration_doc.last_name or "")).strip() if registration_doc else "" %}
+{% set transaction_code = registration_doc.payment_transaction_id or registration_doc.name if registration_doc else "" %}
+{% set event_title = "CESE Conference" %}
+{% set event_date = "To be announced" %}
+{% set event_end_date = "To be announced" %}
 <div class="container" style="max-width: 760px; padding: 2rem 0;">
 	<h1>Payment Completed</h1>
-	{% if registration %}
-	<p>Your payment was completed successfully.</p>
-	<p>Your registration ID is <strong>{{ registration }}</strong>.</p>
+	{% if registration_doc %}
+	<p>Dear <strong>{{ full_name }}</strong>,</p>
+	<p>
+		Your payment has been completed successfully for
+		<strong>{{ event_title }}</strong>.
+	</p>
+
+	<div style="background-color: #eafaf1; border-left: 6px solid #27ae60; padding: 10px; margin: 15px 0;">
+		<strong>Payment Confirmed:</strong>
+		<span style="font-size: 1.2em; color: #1e8449;">{{ frappe.format_value(registration_doc.grand_total, {"fieldtype": "Currency"}) }}</span>
+	</div>
+
+	<h3>Registrant Details</h3>
+	<ul>
+		<li><strong>Name:</strong> {{ full_name }}</li>
+		<li><strong>Organization:</strong> {{ registration_doc.organization }}</li>
+		<li><strong>Location:</strong> {{ registration_doc.city }}, {{ registration_doc.country }}</li>
+		<li><strong>Email:</strong> {{ registration_doc.email }}</li>
+		<li><strong>Phone:</strong> {{ registration_doc.phone }}</li>
+	</ul>
+
+	<h3>Event Information</h3>
+	<ul>
+		<li><strong>Event:</strong> {{ event_title }}</li>
+		<li><strong>Dates:</strong> {{ event_date }} - {{ event_end_date }}</li>
+		<li><strong>Ticket Type:</strong> {{ ticket_title or registration_doc.ticket }}</li>
+		<li><strong>Amount Paid:</strong> {{ frappe.format_value(registration_doc.grand_total, {"fieldtype": "Currency"}) }}</li>
+		<li><strong>Payment Method:</strong> Card Payment</li>
+		<li><strong>Transaction Code:</strong> <span style="color: #1e8449;"><strong>{{ transaction_code }}</strong></span></li>
+		<li><strong>Registration ID:</strong> {{ registration_doc.name }}</li>
+	</ul>
+
+	<h3>Next Steps</h3>
+	<ol>
+		<li>Your seat is now confirmed.</li>
+		<li>You will receive a confirmation email with event updates.</li>
+	</ol>
+
+	<p>Regards,</p>
+	<p>Events Management Team</p>
+	{% elif registration %}
+	<p>Payment completed, but registration ID <strong>{{ registration }}</strong> was not found.</p>
 	{% else %}
 	<p>Payment completed.</p>
 	{% endif %}
