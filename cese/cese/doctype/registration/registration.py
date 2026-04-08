@@ -7,6 +7,11 @@ from frappe import _
 
 
 class Registration(Document):
+	# paypalstandardpayments reads these fields generically for Sales Order flows.
+	# Keep them on this controller to avoid attribute errors for Registration payments.
+	reference_doctype = None
+	reference_name = None
+
 	def validate(self):
 		if not self.ticket:
 			self.grand_total = None
@@ -26,6 +31,9 @@ class Registration(Document):
 	def on_payment_authorized(self, status=None):
 		if status not in ("Authorized", "Completed"):
 			return
+
+		if self.payment_method == "Offline Bank Transfer":
+			return frappe.utils.get_url(f"/offline-payment-instructions?registration={self.name}")
 
 		transaction_id = frappe.db.get_value(
 			"Integration Request",
@@ -47,4 +55,4 @@ class Registration(Document):
 			update_modified=False,
 		)
 
-		return frappe.utils.get_url(f"/registration?name={self.name}")
+		return frappe.utils.get_url(f"/payment-complete?registration={self.name}")

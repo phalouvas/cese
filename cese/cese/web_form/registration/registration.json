@@ -68,6 +68,21 @@
    "reqd": 1,
    "show_in_filter": 0
   },
+    {
+     "allow_read_on_all_link_options": 0,
+     "default": "Card Payment",
+     "fieldname": "payment_method",
+     "fieldtype": "Select",
+     "hidden": 0,
+     "label": "Payment Method",
+     "max_length": 0,
+     "max_value": 0,
+     "options": "Card Payment\nOffline Bank Transfer",
+     "precision": "",
+     "read_only": 0,
+     "reqd": 1,
+     "show_in_filter": 0
+    },
   {
    "allow_read_on_all_link_options": 0,
    "fieldname": "first_name",

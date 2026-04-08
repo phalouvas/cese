@@ -7,7 +7,8 @@
  "field_order": [
   "ticket",
   "grand_total",
-    "payment_transaction_id",
+  "payment_method",
+  "payment_transaction_id",
   "first_name",
   "last_name",
   "organization",
@@ -92,12 +93,20 @@
    "label": "Amount",
    "read_only": 1,
    "reqd": 1
-    },
-    {
-     "fieldname": "payment_transaction_id",
-     "fieldtype": "Data",
-     "label": "Payment Transaction ID",
-     "read_only": 1
+  },
+  {
+   "default": "Card Payment",
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "Card Payment\nOffline Bank Transfer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_transaction_id",
+   "fieldtype": "Data",
+   "label": "Payment Transaction ID",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,

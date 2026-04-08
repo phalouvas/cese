@@ -1,6 +1,28 @@
 frappe.ready(function() {
+	const CARD_PAYMENT = "Card Payment"
+	const OFFLINE_PAYMENT = "Offline Bank Transfer"
+	const OFFLINE_PAYMENT_ROUTE = "/offline-payment-instructions"
+
 	const setPricing = (grandTotal) => {
 		return frappe.web_form.set_value("grand_total", grandTotal)
+	}
+
+	const getPaymentMethod = () => {
+		return frappe.web_form.get_value("payment_method") || CARD_PAYMENT
+	}
+
+	const isOfflinePayment = () => {
+		return getPaymentMethod() === OFFLINE_PAYMENT
+	}
+
+	const syncPaymentFlow = () => {
+		const offlinePayment = isOfflinePayment()
+
+		frappe.web_form.accept_payment = !offlinePayment
+
+		if (offlinePayment) {
+			frappe.web_form.set_value("status", "Pending")
+		}
 	}
 
 	const setTicketAmount = () => {
@@ -22,5 +44,26 @@ frappe.ready(function() {
 	}
 
 	frappe.web_form.on("ticket", setTicketAmount)
+	frappe.web_form.on("payment_method", syncPaymentFlow)
+
+	frappe.web_form.validate = () => {
+		syncPaymentFlow()
+		return true
+	}
+
+	const originalHandleSuccess = frappe.web_form.handle_success.bind(frappe.web_form)
+	frappe.web_form.handle_success = (data) => {
+		if (isOfflinePayment()) {
+			const registrationId = (data && data.name) || (frappe.web_form.doc && frappe.web_form.doc.name)
+			if (registrationId) {
+				window.location.href = `${OFFLINE_PAYMENT_ROUTE}?registration=${encodeURIComponent(registrationId)}`
+				return
+			}
+		}
+
+		return originalHandleSuccess(data)
+	}
+
+	syncPaymentFlow()
 	setTicketAmount()
 })
