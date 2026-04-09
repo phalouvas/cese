@@ -53,12 +53,29 @@ frappe.ready(function() {
 
 	const originalHandleSuccess = frappe.web_form.handle_success.bind(frappe.web_form)
 	frappe.web_form.handle_success = (data) => {
+		const registrationId =
+			(data && typeof data === "object" && data.name) ||
+			(frappe.web_form.doc && frappe.web_form.doc.name)
+
 		if (isOfflinePayment()) {
-			const registrationId = (data && data.name) || (frappe.web_form.doc && frappe.web_form.doc.name)
 			if (registrationId) {
 				window.location.href = `${OFFLINE_PAYMENT_ROUTE}?registration=${encodeURIComponent(registrationId)}`
 				return
 			}
+
+			return originalHandleSuccess(data)
+		}
+
+		if (typeof data === "string" && data) {
+			window.location.href = data
+			return
+		}
+
+		if (registrationId) {
+			frappe.msgprint(
+				`Registration ${registrationId} was created, but payment redirect failed. Please retry payment or contact support with this ID.`
+			)
+			return
 		}
 
 		return originalHandleSuccess(data)

@@ -12,6 +12,7 @@ class Registration(Document):
 	# Keep them on this controller to avoid attribute errors for Registration payments.
 	reference_doctype = None
 	reference_name = None
+	currency = 'EUR'
 
 	def validate(self):
 		if not self.ticket:
