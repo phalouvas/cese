@@ -38,7 +38,6 @@
   {
    "fieldname": "organization",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Organization",
    "options": "Name",
    "reqd": 1
@@ -46,7 +45,6 @@
   {
    "fieldname": "city",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "City",
    "options": "Name",
    "reqd": 1
@@ -68,6 +66,7 @@
   {
    "fieldname": "email",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Email",
    "options": "Email",
    "reqd": 1
@@ -76,6 +75,8 @@
    "default": "Pending",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Status",
    "options": "Pending\nPaid\nCancelled"
   },
@@ -98,6 +99,7 @@
    "default": "Card Payment",
    "fieldname": "payment_method",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Payment Method",
    "options": "Card Payment\nOffline Bank Transfer",
    "reqd": 1
@@ -112,7 +114,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 10:44:56.758522",
+ "modified": "2026-04-09 14:37:53.759626",
  "modified_by": "Administrator",
  "module": "Cese",
  "name": "Registration",
