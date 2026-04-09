@@ -16,18 +16,16 @@ class Registration(Document):
 	def validate(self):
 		if not self.ticket:
 			self.grand_total = None
-			self.currency = None
 			return
 
 		ticket_data = frappe.db.get_value(
-			"Tickets", self.ticket, ["grand_total", "currency"], as_dict=True
+			"Tickets", self.ticket, ["grand_total"], as_dict=True
 		)
 
 		if not ticket_data:
 			frappe.throw(_("Ticket {0} does not exist.").format(frappe.bold(self.ticket)))
 
 		self.grand_total = ticket_data.grand_total
-		self.currency = ticket_data.currency
 
 	def after_insert(self):
 		if self.payment_method == "Offline Bank Transfer":
@@ -72,7 +70,7 @@ class Registration(Document):
 			frappe.db.get_value("Tickets", self.ticket, "title") if self.ticket else None
 		)
 		full_name = " ".join(filter(None, [self.first_name, self.last_name]))
-		amount = fmt_money(self.grand_total, currency=self.currency or "EUR")
+		amount = fmt_money(self.grand_total, currency="EUR")
 
 		return {
 			"full_name": full_name,
